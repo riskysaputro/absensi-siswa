@@ -16,20 +16,15 @@ class Index extends Component
     public $showEditModal = false;
 
     protected $rules = [
-        'class_name' => 'required|min:3'
+        'class_name' => 'required'
     ];
-    public function openCreate()
+
+    public function openModal()
     {
-        $this->showCreateModal = true;
         $this->resetForm();
+        $this->showModal = true;
     }
 
-    public function closeCreate()
-    {
-        $this->showCreateModal = false;
-
-        $this->resetForm();
-    }
 
 
     public function openEdit($id)
@@ -73,6 +68,8 @@ class Index extends Component
         ClassRoom::create([
             'class_name' => $this->class_name
         ]);
+        $this->showModal = false;
+        $this->resetForm();
 
 
         session()->flash(
@@ -81,7 +78,7 @@ class Index extends Component
         );
 
 
-        $this->closeCreate();
+        // $this->closeCreate();
     }
 
     public function edit($id)

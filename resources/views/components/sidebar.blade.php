@@ -12,9 +12,8 @@
         </li>
 
 
-
         {{-- ABSENSI --}}
-        @can('manage attendance')
+        @can('kelola absensi')
             <li>
 
                 <a href="{{ route('attendance.index') }}" class="block px-3 py-2 rounded hover:bg-gray-100">
@@ -30,7 +29,7 @@
 
 
         {{-- LAPORAN --}}
-        @can('view report')
+        @can('lihat laporan')
             <li>
 
                 <a href="{{ route('attendance.report') }}" class="block px-3 py-2 rounded hover:bg-gray-100">
@@ -46,7 +45,7 @@
 
 
         {{-- DATA MASTER --}}
-        @can('manage classroom')
+        @can('kelola kelas')
             <li>
 
                 <a href="{{ route('classrooms.index') }}" class="block px-3 py-2 rounded hover:bg-gray-100">
@@ -61,7 +60,7 @@
 
 
 
-        @can('manage student')
+        @can('kelola siswa')
             <li>
 
                 <a href="{{ route('students.index') }}" class="block px-3 py-2 rounded hover:bg-gray-100">
@@ -76,7 +75,7 @@
 
 
 
-        @can('manage subject')
+        @can('kelola mata pelajaran')
             <li>
 
                 <a href="{{ route('subject.index') }}" class="block px-3 py-2 rounded hover:bg-gray-100">
@@ -91,7 +90,7 @@
 
 
 
-        @can('manage schedule')
+        @can('kelola jadwal')
             <li>
 
                 <a href="{{ route('schedule.index') }}" class="block px-3 py-2 rounded hover:bg-gray-100">
@@ -103,11 +102,8 @@
             </li>
         @endcan
 
-
-
-
         {{-- USER --}}
-        @can('manage user')
+        @can('kelola pengguna')
             <li>
 
                 <a href="{{ route('users.index') }}" class="block px-3 py-2 rounded hover:bg-gray-100">
@@ -124,7 +120,7 @@
 
 
         {{-- PERMISSION --}}
-        @can('manage permission')
+        @can('kelola hak akses')
             <li x-data="{ open: false }">
 
 

@@ -16,15 +16,62 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // ini mangggil seeder role
+        $this->call([
+            RolePermissionSeeder::class,
+        ]);
+        // ini buat user yaitu admin
+        $admin = User::create([
 
-        User::factory()->create([
-            'name' => 'Admin Test',
+            'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('admin123'),
+
             'nip' => '123456789',
-            'phone' => '123456789',
-            'address' => 'jakarta',
-            ]);
+            'phone' => '08123456789',
+            'address' => 'Jakarta',
+
+        ]);
+        $gurusatu = User::create([
+
+            'name' => 'guru satu',
+            'email' => 'guru@gmail.com',
+            'password' => Hash::make('admin123'),
+
+            'nip' => '1234567',
+            'phone' => '08123456789',
+            'address' => 'Jakarta',
+
+        ]);
+        $kepala = User::create([
+
+            'name' => 'kepala sekoalh',
+            'email' => 'kepsek@gmail.com',
+            'password' => Hash::make('admin123'),
+
+            'nip' => '1234562127',
+            'phone' => '08123456789',
+            'address' => 'Jakarta',
+
+        ]);
+        // ini buat beri role
+        $admin->assignRole('Super Admin');
+        $gurusatu->assignRole('Guru');
+        $kepala->assignRole('Kepala Sekolah');
+
+        // User::factory(10)->create();
+
+        // User::factory()->create([
+        //     'name' => 'Admin Test',
+        //     'email' => 'admin@gmail.com',
+        //     'password' => Hash::make('admin123'),
+        //     'nip' => '123456789',
+        //     'phone' => '123456789',
+        //     'address' => 'jakarta',
+        // ]);
+
+        $this->call([
+            SubjectSeeder::class,
+        ]);
     }
 }

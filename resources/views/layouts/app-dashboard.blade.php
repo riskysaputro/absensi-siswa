@@ -19,7 +19,7 @@
     {{-- Sidebar --}}
     @include('components.sidebar')
     {{-- Content --}}
-    <main class="ml-60">
+    <main class="ml-60 pt-16">
 
         {{ $slot }}
 

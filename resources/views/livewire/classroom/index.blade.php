@@ -16,7 +16,7 @@
             </div>
 
 
-            <button wire:click="openCreate" class="bg-white text-indigo-600 px-4 py-2 rounded-lg shadow">
+            <button wire:click="openModal" class="bg-white text-indigo-600 px-4 py-2 rounded-lg shadow">
                 + Tambah
             </button>
 
@@ -126,116 +126,84 @@
 
     </div>
 
+    {{-- Modal --}}
+    @if ($showModal)
+
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+
+            <div class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6">
+
+                <h2 class="text-xl font-bold mb-4">
+
+                    {{ $classroomId ? 'Edit Kelas' : 'Tambah Kelas' }}
+
+                </h2>
+
+                <div class="mb-4">
+
+                    <label class="block mb-2">
+                        Nama Kelas
+                    </label>
+
+                    <input type="text" wire:model="class_name" class="w-full border rounded px-3 py-2">
+
+                    @error('class_name')
+                        <span class="text-red-500 text-sm">
+                            {{ $message }}
+                        </span>
+                    @enderror
+
+                </div>
 
 
+                <div class="flex justify-end gap-2">
 
-
-
-{{-- CREATE MODAL --}}
-@if ($showCreateModal)
-    <div class="fixed inset-0 bg-black/40 flex items-center justify-center">
-
-
-        <div class="bg-white rounded-xl p-6 w-96">
-
-
-            <h2 class="text-xl font-bold mb-4">
-
-                Tambah Kelas
-
-            </h2>
-
-
-
-            <form wire:submit.prevent="store">
-
-
-                <input wire:model="class_name" class="w-full border rounded-lg px-3 py-2" placeholder="Nama kelas">
-
-
-                <div class="flex justify-end gap-2 mt-5">
-
-
-                    <button type="button" wire:click="closeCreate" class="bg-gray-400 text-white px-4 py-2 rounded">
+                    <button wire:click="$set('showModal', false)" class="bg-gray-500 text-white px-4 py-2 rounded">
 
                         Batal
 
                     </button>
 
+                    @if ($classroomId)
+                        <button wire:click="update" class="bg-yellow-500 text-white px-4 py-2 rounded">
 
-                    <button class="bg-blue-600 text-white px-4 py-2 rounded">
+                            Update
 
-                        Simpan
+                        </button>
+                    @else
+                        <button wire:click="store" class="bg-blue-600 text-white px-4 py-2 rounded">
 
-                    </button>
+                            Simpan
 
-
-                </div>
-
-
-            </form>
-
-
-        </div>
-
-
-    </div>
-@endif
-
-
-
-
-
-
-{{-- EDIT MODAL --}}
-@if ($showEditModal)
-    <div class="fixed inset-0 bg-black/40 flex menampilkan items-center justify-center">
-
-
-        <div class="bg-white rounded-xl p-6 w-96">
-
-
-            <h2 class="text-xl font-bold mb-4">
-
-                Edit Kelas
-
-            </h2>
-
-
-
-            <form wire:submit.prevent="update">
-
-
-                <input wire:model="class_name" class="w-full border rounded-lg px-3 py-2">
-
-
-
-                <div class="flex justify-end gap-2 mt-5">
-
-
-                    <button type="button" wire:click="closeEdit" class="bg-gray-400 text-white px-4 py-2 rounded">
-
-                        Batal
-
-                    </button>
-
-
-
-                    <button class="bg-yellow-500 text-white px-4 py-2 rounded">
-
-                        Update
-
-                    </button>
-
+                        </button>
+                    @endif
 
                 </div>
 
-
-            </form>
-
+            </div>
 
         </div>
 
+    @endif
+    {{-- EDIT MODAL --}}
+    @if ($showEditModal)
+        <div class="fixed inset-0 bg-black/40 flex items-center justify-center">
+            <div class="bg-white rounded-xl p-6 w-96">
+                <h2 class="text-xl font-bold mb-4">
+                    Edit Kelas
+                </h2>
+                <form wire:submit.prevent="update">
+                    <input wire:model="class_name" class="w-full border rounded-lg px-3 py-2">
+                    <div class="flex justify-end gap-2 mt-5">
+                        <button type="button" wire:click="closeEdit" class="bg-gray-400 text-white px-4 py-2 rounded">
+                            Batal
+                        </button>
+                        <button class="bg-yellow-500 text-white px-4 py-2 rounded">
+                            Update
+                        </button>
+                    </div>
+                </form>
+            </div>
+    @endif
 
-    </div>
-@endif
+</div>

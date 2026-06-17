@@ -16,39 +16,46 @@ class RolePermissionSeeder extends Seeder
 
         $permissions = [
 
-            'manage users',
-            'manage students',
-            'manage classes',
-            'manage subjects',
-            'manage schedules',
-            'take attendance',
-            'view reports',
+            // 'manage users',
+            // 'manage students',
+            // 'manage classes',
+            // 'manage subjects',
+            // 'manage schedules',
+            // 'take attendance',
+            // 'view reports',
+            'kelola pengguna',
+            'kelola siswa',
+            'kelola kelas',
+            'kelola mata pelajaran',
+            'kelola jadwal',
+            'kelola absensi',
+            'lihat laporan',
+            'kelola hak akses',
 
         ];
 
 
-        foreach($permissions as $permission){
+        foreach ($permissions as $permission) {
 
             Permission::create([
-                'name'=>$permission
+                'name' => $permission
             ]);
-
         }
 
 
 
         $superAdmin = Role::create([
-            'name'=>'Super Admin'
+            'name' => 'Super Admin'
         ]);
 
 
         $kepala = Role::create([
-            'name'=>'Kepala Sekolah'
+            'name' => 'Kepala Sekolah'
         ]);
 
 
         $guru = Role::create([
-            'name'=>'Guru'
+            'name' => 'Guru'
         ]);
 
 
@@ -60,7 +67,7 @@ class RolePermissionSeeder extends Seeder
 
         $kepala->givePermissionTo([
 
-            'view reports',
+            'lihat laporan',
 
         ]);
 
@@ -68,12 +75,9 @@ class RolePermissionSeeder extends Seeder
 
         $guru->givePermissionTo([
 
-            'take attendance',
-            'view reports',
+            'kelola absensi',
+            'lihat laporan',
 
         ]);
-
-
     }
-
 }

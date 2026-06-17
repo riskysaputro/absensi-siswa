@@ -34,10 +34,6 @@ Route::middleware('auth')->group(function () {
         ->name('dashboard');
 
 
-    Route::get('/dashboard', Dashboard::class)
-        ->name('dashboard');
-
-
 
 
     /*
@@ -50,21 +46,21 @@ Route::middleware('auth')->group(function () {
         ProfileController::class,
         'edit'
     ])
-    ->name('profile.edit');
+        ->name('profile.edit');
 
 
     Route::patch('/profile', [
         ProfileController::class,
         'update'
     ])
-    ->name('profile.update');
+        ->name('profile.update');
 
 
     Route::delete('/profile', [
         ProfileController::class,
         'destroy'
     ])
-    ->name('profile.destroy');
+        ->name('profile.destroy');
 
 
 
@@ -78,31 +74,31 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/users', UserIndex::class)
-        ->middleware('permission:manage users')
+        ->middleware('permission:kelola pengguna')
         ->name('users.index');
 
 
 
     Route::get('/classrooms', ClassroomIndex::class)
-        ->middleware('permission:manage classes')
+        ->middleware('permission:kelola kelas')
         ->name('classrooms.index');
 
 
 
     Route::get('/students', StudentIndex::class)
-        ->middleware('permission:manage students')
+        ->middleware('permission:kelola siwa')
         ->name('students.index');
 
 
 
     Route::get('/subject', SubjectIndex::class)
-        ->middleware('permission:manage subjects')
+        ->middleware('permission:kelola mata pelajaran')
         ->name('subject.index');
 
 
 
     Route::get('/schedule', ScheduleIndex::class)
-        ->middleware('permission:manage schedules')
+        ->middleware('permission:kelola jadwal')
         ->name('schedule.index');
 
 
@@ -118,23 +114,23 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/attendances', AttendanceIndex::class)
-        ->middleware('permission:take attendance')
+        ->middleware('permission:kelola absensi')
         ->name('attendance.index');
 
 
 
     Route::get('/report', Report::class)
-        ->middleware('permission:view reports')
+        ->middleware('permission:lihat laporan')
         ->name('attendance.report');
 
 
 
     Route::get(
         '/attendance/report/pdf',
-        [AttendanceReportController::class,'download']
+        [AttendanceReportController::class, 'download']
     )
-    ->middleware('permission:view reports')
-    ->name('attendance.report.pdf');
+        ->middleware('permission:lihat laporan')
+        ->name('attendance.report.pdf');
 
 
 
@@ -149,14 +145,14 @@ Route::middleware('auth')->group(function () {
 
 
     Route::middleware('role:Super Admin')
-        ->group(function(){
+        ->group(function () {
 
 
             Route::get(
                 '/permissions',
                 PermissionIndex::class
             )
-            ->name('permissions.index');
+                ->name('permissions.index');
 
 
 
@@ -164,15 +160,10 @@ Route::middleware('auth')->group(function () {
                 '/permissions/assign',
                 Assign::class
             )
-            ->name('permission.assign');
-
-
+                ->name('permission.assign');
         });
-
-
-
 });
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

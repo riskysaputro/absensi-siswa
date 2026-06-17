@@ -1,121 +1,37 @@
-<nav class="bg-white shadow border-b">
-
+<nav class="fixed top-0 w-full z-50 bg-white shadow border-b">
     <div class="max-w-7xl mx-auto px-6">
-
         <div class="flex justify-between h-16 items-center">
 
-
-            <div class="flex items-center gap-8">
-
-
-                <a href="{{ route('dashboard') }}" class="text-xl font-bold text-indigo-600">
-
-                    🎓 AbsensiKu
-
-                </a>
+            {{-- Logo di kiri --}}
+            <a href="{{ route('dashboard') }}" class="flex items-center gap-2 text-xl font-bold text-indigo-600">
+                <span class="text-2xl">🎓</span>
+                <span>AbsensiKu</span>
+            </a>
 
 
-
-                <div class="hidden md:flex gap-5">
-
-
-                    <a href="{{ route('dashboard') }}" class="hover:text-indigo-600">
-
-                        Dashboard
-
-                    </a>
-
-
-
-                    @can('manage student')
-                        <a href="{{ route('students.index') }}" class="hover:text-indigo-600">
-
-                            Siswa
-
-                        </a>
-                    @endcan
-
-
-
-                    @can('manage attendance')
-                        <a href="{{ route('attendance.index') }}" class="hover:text-indigo-600">
-
-                            Absensi
-
-                        </a>
-                    @endcan
-
-
-
-                    <a href="{{ route('attendance.report') }}" class="hover:text-indigo-600">
-
-                        Rekap Laporan
-
-                    </a>
-
-
-                    @role('Super Admin')
-                        <a href="{{ route('permissions.index') }}" class="hover:text-indigo-600">
-
-                            Hak Akses
-
-                        </a>
-                    @endrole
-
-
-
-                </div>
-
-
-            </div>
-
-
-
-            <div class="flex items-center gap-4">
-
+            {{-- User kanan ama tombol logout dikanan --}}
+            <div class="flex items-center gap-6">
 
                 <div class="text-right">
-
-                    <p class="font-semibold">
-
+                    <p class="font-semibold text-gray-800">
                         {{ auth()->user()->name }}
-
                     </p>
-
-
                     <span class="text-xs text-gray-500">
-
                         {{ auth()->user()->getRoleNames()->first() }}
-
                     </span>
-
-
                 </div>
 
-
-
-
                 <form method="POST" action="{{ route('logout') }}">
-
                     @csrf
 
-                    <button class="bg-red-500 text-white px-4 py-2 rounded-xl">
-
+                    <button class="bg-red-500 hover:bg-red-600 transition text-white px-4 py-2 rounded-xl shadow">
                         Logout
-
                     </button>
-
 
                 </form>
 
-
             </div>
 
-
-
         </div>
-
     </div>
-
-
 </nav>
